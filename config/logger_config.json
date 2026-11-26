@@ -1,0 +1,5 @@
+{
+  "logger_name": "cat_puzzle_logger",
+  "log_file": "logs/game.log",
+  "log_pattern": "[%Y-%m-%d %H:%M:%S.%e] [%l] %v"
+}
