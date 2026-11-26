@@ -1,3 +1,5 @@
+#include "Grid.hpp"
+
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -54,10 +56,32 @@ int main() {
             gameCfg.at("colors").at("background_a").get<unsigned char>()
         };
 
+        GridConfig gridCfg;
+        gridCfg.rows = gameCfg.at("grid").at("rows").get<int>();
+        gridCfg.cols = gameCfg.at("grid").at("cols").get<int>();
+        gridCfg.cellSize = gameCfg.at("grid").at("cell_size").get<int>();
+        gridCfg.padding = gameCfg.at("grid").at("padding").get<int>();
+        gridCfg.offsetX = gameCfg.at("grid").at("offset_x").get<int>();
+        gridCfg.offsetY = gameCfg.at("grid").at("offset_y").get<int>();
+        gridCfg.cellColor = Color{
+            gameCfg.at("colors").at("grid_cell_r").get<unsigned char>(),
+            gameCfg.at("colors").at("grid_cell_g").get<unsigned char>(),
+            gameCfg.at("colors").at("grid_cell_b").get<unsigned char>(),
+            gameCfg.at("colors").at("grid_cell_a").get<unsigned char>()
+        };
+        gridCfg.borderColor = Color{
+            gameCfg.at("colors").at("grid_border_r").get<unsigned char>(),
+            gameCfg.at("colors").at("grid_border_g").get<unsigned char>(),
+            gameCfg.at("colors").at("grid_border_b").get<unsigned char>(),
+            gameCfg.at("colors").at("grid_border_a").get<unsigned char>()
+        };
+
         const std::string welcomeText = gameCfg.at("ui").at("welcome_text").get<std::string>();
         const int textX = gameCfg.at("ui").at("text_pos_x").get<int>();
         const int textY = gameCfg.at("ui").at("text_pos_y").get<int>();
         const int fontSize = gameCfg.at("ui").at("font_size").get<int>();
+
+        auto grid = std::make_unique<Grid>(gridCfg);
 
         InitWindow(screenWidth, screenHeight, windowTitle.c_str());
         SetTargetFPS(targetFps);
@@ -67,6 +91,7 @@ int main() {
             BeginDrawing();
             ClearBackground(bgColor);
             DrawText(welcomeText.c_str(), textX, textY, fontSize, DARKGRAY);
+            grid->draw();
             EndDrawing();
         }
 

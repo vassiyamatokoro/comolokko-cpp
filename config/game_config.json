@@ -9,12 +9,28 @@
     "background_r": 245,
     "background_g": 240,
     "background_b": 230,
-    "background_a": 255
+    "background_a": 255,
+    "grid_cell_r": 255,
+    "grid_cell_g": 252,
+    "grid_cell_b": 245,
+    "grid_cell_a": 255,
+    "grid_border_r": 180,
+    "grid_border_g": 165,
+    "grid_border_b": 145,
+    "grid_border_a": 255
+  },
+  "grid": {
+    "rows": 6,
+    "cols": 6,
+    "cell_size": 72,
+    "padding": 6,
+    "offset_x": 270,
+    "offset_y": 140
   },
   "ui": {
-    "welcome_text": "Zemzem - Hazir!",
-    "text_pos_x": 380,
-    "text_pos_y": 360,
-    "font_size": 32
+    "welcome_text": "Zemzem - Izgara Hazir!",
+    "text_pos_x": 270,
+    "text_pos_y": 75,
+    "font_size": 28
   }
 }
